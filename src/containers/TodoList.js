@@ -2,6 +2,7 @@ import React from 'react'
 
 import NewTodo from './NewTodo'
 import DestroyBtn from '../components/DestroyBtn'
+import TodoTitle from '../components/TodoTitle'
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -15,15 +16,17 @@ class TodoList extends React.Component {
   }
 
   addTodo(value) {
-    let newTodo = {
-      text:value,
-      completed: false
+    if(value) {
+      let newTodo = {
+        text:value.trim(),
+        completed: false
+      }
+      let newTodos = this.state.todos;
+      newTodos.push(newTodo)
+      this.setState({
+        todos: newTodos
+      })
     }
-    let newTodos = this.state.todos;
-    newTodos.push(newTodo)
-    this.setState({
-      todos: newTodos
-    })
   }
 
   setComplete(index) {
@@ -45,13 +48,17 @@ class TodoList extends React.Component {
   render() {
     return (
       <div className="todos">
+        <TodoTitle count={this.state.todos.length} />
         <NewTodo addTodo={this.addTodo} />
         <div className={ this.state.todos.length > 0 ? 'todo-list' : 'todo-list nodisplay'}>
           <ul>
             {this.state.todos.map((item, index) => {
-              return <li key={index}>
-                        <div onClick={(e) => {this.setComplete(index)}}>{item.text}</div>
-                        <DestroyBtn removeTodo={this.removeTodo} index={index} />
+              return <li key={index} className={ item.completed ? 'completed' : '' }>
+                        <div>{item.text}</div>
+                        <div className="options">
+                          <div onClick={(e) => {this.setComplete(index)}}>&#9989;</div>
+                          <DestroyBtn removeTodo={this.removeTodo} index={index} />
+                        </div>
                       </li>
             })}
           </ul>

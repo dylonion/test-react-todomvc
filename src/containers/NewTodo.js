@@ -12,6 +12,15 @@ class NewTodo extends React.Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.checkKeydown = this.checkKeydown.bind(this)
+    this.clearTodo = this.clearTodo.bind(this)
+  }
+
+  clearTodo() {
+    this.setState({
+      newTodo: {
+        new: ''
+      }
+    })
   }
 
   handleInputChange(e) {
@@ -29,6 +38,7 @@ class NewTodo extends React.Component {
     const ENTER_KEY = 13;
     if(e.which === ENTER_KEY) {
       this.props.addTodo(value);
+      this.clearTodo()
     }
     return false;
   }
@@ -41,6 +51,7 @@ class NewTodo extends React.Component {
           checkKeydown={this.checkKeydown}
           addTodo={this.props.addTodo}
           newTodo={this.state.newTodo}
+          clearTodo={this.clearTodo}
         />
       </div>
     )
