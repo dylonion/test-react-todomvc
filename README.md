@@ -2,6 +2,9 @@
 
 A basic To-Do list app created with React. React's create-react-app script was used for bootstrapping the initial build, but no dependencies were used.
 
+##Resources
+###1. Temporary bitballoon host of a working app version: http://brave-fermi-e1671d.netlify.com/
+
 ##Documentation
 
 Features of this To-Do list creator are limited to spec - ToDo creation, a checkmark button to mark an item as completed, a delete button, and a counter of total items in the list.
@@ -25,3 +28,7 @@ The code structure of the app is limited to two state-full container components 
 When rendering the list, the "complete" and "delete" buttons are given a reference to their corresponding to-do item in the form of their index in the array stored in TodoList's state, which is passed to the complete and delete functions respectively. The one hiccup I ran into was remembering to duplicate the todo array in the delete function, so as not to mutate state with array.splice() 
 
 Deviated from specifications in my Git practices. I started committing directly to master, and continued with this transgression for the rest of the project's implementation. I should note that I am fully aware of the importance of following git flow procedure in production. 
+
+##Credit
+
+Created by Dylan Moylan on 08/09/19
